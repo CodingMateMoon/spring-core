@@ -9,7 +9,7 @@ public class OrderApp {
 
     public static void main(String[] args) {
         MemberService memberService = new MemberServiceImpl();
-        OrderService orderService = new OrderServiceImpl();
+        OrderService orderService = new OrderServiceImpl(memberRepository, discountPoilcy);
 
         Long memberId = 1L;
         Member member = new Member(memberId, "memberA", Grade.VIP);
