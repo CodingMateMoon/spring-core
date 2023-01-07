@@ -20,19 +20,37 @@ public class AppConfig {
     /* AppConfig에서 역할과 구현 클래스가 한 눈에 들어오도록 표현
     MemberService 역할(현재 MemberService는 MemberServiceImpl을 사용), MemberRepository 역할(현재 MemberRepository는 MemoryMemberRepository를 사용), OrderService 역할
      */
+    //@Bean memberService -> new MemoryMemberRepository()
+    //@Bean orderService -> new MemoryMemberRepository()
+
+    /* 예상 결과 */
+    // call AppConfig.memberService
+    // call AppConfig.memberRepository
+    // call AppConfig.memberRepository
+    // call AppConfig.orderService
+    // call AppConfig.memberRepository
+
+    /* 실제 결과 */
+    //call AppConfig.memberService
+    //call AppConfig.memberRepository
+    //call AppConfig.orderService
+
     @Bean
     public MemberService memberService() {
+        System.out.println("call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());
     }
 
     @Bean
-    public OrderService orderService() {
-        return new OrderServiceImpl(memberRepository(), discountPoilcy());
+    public MemberRepository memberRepository() {
+        System.out.println("call AppConfig.memberRepository");
+        return new MemoryMemberRepository();
     }
 
     @Bean
-    public MemberRepository memberRepository() {
-        return new MemoryMemberRepository();
+    public OrderService orderService() {
+        System.out.println("call AppConfig.orderService");
+        return new OrderServiceImpl(memberRepository(), discountPoilcy());
     }
 
     // 할인 정책을 변경해도 애플리케이션의 구성 역할을 담당하는 AppConfig만 변경하면 됩니다. 구성 역할을 담당하는 AppConfig 공연 기획자가 공연 참여자인 구현 객체들을 모두 알고 구성 영역을 변경시킵니다. DiscountPolicy 추상화에 의존하고 구현체를 받아서 쓰기 때문에 클라이언트 코드인 OrderServiceImpl 등 사용영역의 코드는 변경하지 않습니다.
