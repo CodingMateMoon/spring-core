@@ -3,13 +3,17 @@ package hello.core.order;
 import hello.core.discount.DiscountPoilcy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderServiceImpl implements OrderService{
 
     // 주문 서비스는 저장소, 가격정책 2개가 필요합니다.
     private final MemberRepository memberRepository;
     private final DiscountPoilcy discountPoilcy;
 
+    @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPoilcy discountPoilcy) {
         this.memberRepository = memberRepository;
         this.discountPoilcy = discountPoilcy;
