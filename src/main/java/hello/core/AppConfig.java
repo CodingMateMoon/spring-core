@@ -9,6 +9,7 @@ import hello.core.member.MemberServiceImpl;
 import hello.core.member.MemoryMemberRepository;
 import hello.core.order.OrderService;
 import hello.core.order.OrderServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -34,6 +35,8 @@ public class AppConfig {
     //call AppConfig.memberService
     //call AppConfig.memberRepository
     //call AppConfig.orderService
+    // memberRepository를 스프링 빈으로 등록하고 빈으로 등록된 것을 스프링이 자동으로 주입합니다.
+    //@Autowired MemberRepository memberRepository;
 
     @Bean
     public MemberService memberService() {
