@@ -6,7 +6,7 @@ import hello.core.member.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component // 스프링 빈 등록을 위해 생성자를 호출할 때 @Autowired를 보고 스프링 컨테이너에서 MemberRepository, DiscountPolicy 빈을 꺼내서 넣습니다
 public class OrderServiceImpl implements OrderService{
 
     // 주문 서비스는 저장소, 가격정책 2개가 필요합니다.
@@ -14,7 +14,25 @@ public class OrderServiceImpl implements OrderService{
     private final DiscountPoilcy discountPoilcy;
 
     @Autowired
+    public void setMemberRepository(MemberRepository memberRepository) {
+        System.out.println("OrderServiceImpl.setMemberRepository");
+        System.out.println("memberRepository = " + memberRepository);
+        this.memberRepository = memberRepository;
+    }
+    
+    @Autowired
+    public void setDiscountPoilcy(DiscountPoilcy discountPoilcy) {
+        System.out.println("OrderServiceImpl.setDiscountPoilcy");
+        System.out.println("discountPoilcy = " + discountPoilcy);
+        this.discountPoilcy = discountPoilcy;
+    }
+
+    //@Autowired 생성자가 1개일 경우 @Autowired를 생략해도 가능합니다.
+    //new OrderServiceImpl(memberRepository, discountPolicy);
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPoilcy discountPoilcy) {
+        System.out.println("생성자 memberRepository = " + memberRepository);
+        System.out.println("생성자 discountPoilcy = " + discountPoilcy);
+        System.out.println("OrderServiceImpl.OrderServiceImpl");
         this.memberRepository = memberRepository;
         this.discountPoilcy = discountPoilcy;
     }
