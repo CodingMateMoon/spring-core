@@ -53,8 +53,7 @@ public class AppConfig {
     @Bean
     public OrderService orderService() {
         System.out.println("call AppConfig.orderService");
-        //return new OrderServiceImpl(memberRepository(), discountPoilcy());
-        return null;
+        return new OrderServiceImpl(memberRepository(), discountPoilcy());
     }
 
     // 할인 정책을 변경해도 애플리케이션의 구성 역할을 담당하는 AppConfig만 변경하면 됩니다. 구성 역할을 담당하는 AppConfig 공연 기획자가 공연 참여자인 구현 객체들을 모두 알고 구성 영역을 변경시킵니다. DiscountPolicy 추상화에 의존하고 구현체를 받아서 쓰기 때문에 클라이언트 코드인 OrderServiceImpl 등 사용영역의 코드는 변경하지 않습니다.

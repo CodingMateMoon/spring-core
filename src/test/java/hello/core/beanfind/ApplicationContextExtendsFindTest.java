@@ -22,7 +22,7 @@ public class ApplicationContextExtendsFindTest {
     @Test
     @DisplayName("부모 타입으로 조회시, 자식이 둘 이상 있으면, 중복 오류가 발생")
     void findBeanByParentTypeDuplicate() {
-        DiscountPoilcy bean = ac.getBean(DiscountPoilcy.class);
+//        DiscountPoilcy bean = ac.getBean(DiscountPoilcy.class);
         assertThrows(NoUniqueBeanDefinitionException.class, ()->ac.getBean(DiscountPoilcy.class));
     }
 

@@ -44,7 +44,6 @@ public class ApplicationContextBasicFindTest {
     @DisplayName("존재하지 않는 빈 이름을 조회한 경우")
     void findBeanByNameX() {
 //        ac.getBean("xxxxx", MemberService.class);
-        ac.getBean("xxxxx", MemberService.class);
         assertThrows(NoSuchBeanDefinitionException.class, () -> ac.getBean("xxxxx", MemberService.class));
     }
 }
