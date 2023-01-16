@@ -12,9 +12,10 @@ public class OrderServiceImpl implements OrderService{
     // 주문 서비스는 저장소, 가격정책 2개가 필요합니다.
 //    @Autowired private MemberRepository memberRepository;
 //    @Autowired private DiscountPoilcy discountPoilcy;
-     private MemberRepository memberRepository;
-     private DiscountPoilcy discountPoilcy;
+     private final MemberRepository memberRepository;
+     private final DiscountPoilcy discountPoilcy;
 
+     /*
     public void setMemberRepository(MemberRepository memberRepository) {
         System.out.println("OrderServiceImpl.setMemberRepository");
         System.out.println("memberRepository = " + memberRepository);
@@ -25,7 +26,8 @@ public class OrderServiceImpl implements OrderService{
         System.out.println("OrderServiceImpl.setDiscountPoilcy");
         System.out.println("discountPoilcy = " + discountPoilcy);
         this.discountPoilcy = discountPoilcy;
-    }
+    }*/
+
 
     /*
     @Autowired
@@ -40,8 +42,8 @@ public class OrderServiceImpl implements OrderService{
         System.out.println("OrderServiceImpl.setDiscountPoilcy");
         System.out.println("discountPoilcy = " + discountPoilcy);
         this.discountPoilcy = discountPoilcy;
-    }
-     */
+    }*/
+
 
     //@Autowired 생성자가 1개일 경우 @Autowired를 생략해도 가능합니다.
     //new OrderServiceImpl(memberRepository, discountPolicy);
