@@ -3,10 +3,12 @@ package hello.core.order;
 import hello.core.discount.DiscountPoilcy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component // 스프링 빈 등록을 위해 생성자를 호출할 때 @Autowired를 보고 스프링 컨테이너에서 MemberRepository, DiscountPolicy 빈을 꺼내서 넣습니다
+@RequiredArgsConstructor // 필수값 final 필드를 파라미터로 받는 생성자를 만들어줍니다.
 public class OrderServiceImpl implements OrderService{
 
     // 주문 서비스는 저장소, 가격정책 2개가 필요합니다.
@@ -47,6 +49,7 @@ public class OrderServiceImpl implements OrderService{
 
     //@Autowired 생성자가 1개일 경우 @Autowired를 생략해도 가능합니다.
     //new OrderServiceImpl(memberRepository, discountPolicy);
+    /*
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPoilcy discountPoilcy) {
         System.out.println("생성자 memberRepository = " + memberRepository);
         System.out.println("생성자 discountPoilcy = " + discountPoilcy);
@@ -54,12 +57,15 @@ public class OrderServiceImpl implements OrderService{
         this.memberRepository = memberRepository;
         this.discountPoilcy = discountPoilcy;
     }
+     */
 
+    /*
     @Autowired
     public void init(MemberRepository memberRepository, DiscountPoilcy discountPoilcy) {
         this.memberRepository = memberRepository;
         this.discountPoilcy = discountPoilcy;
     }
+     */
 
     /* 가격 정책 변경
     추상화, 구체화 둘 다 의존하는 경우에서 추상화에만 의존하는 경우로 변경. Memory, JDBC, JPA Repository 등 어떤 저장소가 오는 지 모릅니다.
