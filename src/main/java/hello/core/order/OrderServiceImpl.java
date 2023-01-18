@@ -5,10 +5,11 @@ import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component // 스프링 빈 등록을 위해 생성자를 호출할 때 @Autowired를 보고 스프링 컨테이너에서 MemberRepository, DiscountPolicy 빈을 꺼내서 넣습니다
-@RequiredArgsConstructor // 필수값 final 필드를 파라미터로 받는 생성자를 만들어줍니다.
+//@RequiredArgsConstructor // 필수값 final 필드를 파라미터로 받는 생성자를 만들어줍니다.
 public class OrderServiceImpl implements OrderService{
 
     // 주문 서비스는 저장소, 가격정책 2개가 필요합니다.
@@ -49,15 +50,19 @@ public class OrderServiceImpl implements OrderService{
 
     //@Autowired 생성자가 1개일 경우 @Autowired를 생략해도 가능합니다.
     //new OrderServiceImpl(memberRepository, discountPolicy);
-    /*
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPoilcy discountPoilcy) {
+
+    @Autowired
+    //public OrderServiceImpl(MemberRepository memberRepository, DiscountPoilcy rateDiscountPolicy) {
+    // @Quilifier("mainDiscountPolicy) 선언된 것을 찾고 없으면 빈 이름을 매칭
+    //public OrderServiceImpl(MemberRepository memberRepository, @Qualifier("mainDiscountPolicy") DiscountPoilcy discountPoilcy) {
+    public OrderServiceImpl(MemberRepository memberRepository,  DiscountPoilcy discountPoilcy) {
         System.out.println("생성자 memberRepository = " + memberRepository);
         System.out.println("생성자 discountPoilcy = " + discountPoilcy);
         System.out.println("OrderServiceImpl.OrderServiceImpl");
         this.memberRepository = memberRepository;
         this.discountPoilcy = discountPoilcy;
     }
-     */
+
 
     /*
     @Autowired
