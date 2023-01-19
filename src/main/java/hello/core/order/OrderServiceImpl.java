@@ -1,5 +1,6 @@
 package hello.core.order;
 
+import hello.core.annotation.MainDiscountPolicy;
 import hello.core.discount.DiscountPoilcy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
@@ -55,7 +56,7 @@ public class OrderServiceImpl implements OrderService{
     //public OrderServiceImpl(MemberRepository memberRepository, DiscountPoilcy rateDiscountPolicy) {
     // @Quilifier("mainDiscountPolicy) 선언된 것을 찾고 없으면 빈 이름을 매칭
     //public OrderServiceImpl(MemberRepository memberRepository, @Qualifier("mainDiscountPolicy") DiscountPoilcy discountPoilcy) {
-    public OrderServiceImpl(MemberRepository memberRepository,  DiscountPoilcy discountPoilcy) {
+    public OrderServiceImpl(MemberRepository memberRepository,  @MainDiscountPolicy DiscountPoilcy discountPoilcy) {
         System.out.println("생성자 memberRepository = " + memberRepository);
         System.out.println("생성자 discountPoilcy = " + discountPoilcy);
         System.out.println("OrderServiceImpl.OrderServiceImpl");
